@@ -1,0 +1,67 @@
+<%= form_with(model: message, local: true) do |form| %>
+  <% if message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+        <% message.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_field :message %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :channel_id %>
+    <%= form.text_field :channel_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :msg_type %>
+    <%= form.text_field :msg_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avatar_file_name %>
+    <%= form.text_field :avatar_file_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avatar_content_type %>
+    <%= form.text_field :avatar_content_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avatar_file_size %>
+    <%= form.text_field :avatar_file_size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :avatar_updated_at %>
+    <%= form.datetime_select :avatar_updated_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

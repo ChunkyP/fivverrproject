@@ -1,0 +1,29 @@
+<h1>Users of Room #{@channel.name}</h1>
+<table class="table table-bordered table-hover">
+  <thead class="bg-primary text-white">
+  <tr>
+    <th>Name</th>
+    <th colspan="1">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @user.present? %>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.username %>
+        </td>
+        <td>
+          <%= link_to "Delete", remove_user_path(user,channel_id: @channel.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="2">
+        <%= "No Users present in this room" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

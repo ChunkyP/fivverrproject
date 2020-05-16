@@ -1,0 +1,69 @@
+<%= hidden_field_tag 'user_id', current_user.id %>
+<%= hidden_field_tag 'c_channel_id', @channel.id %>
+<div class="row mt-5">
+  <div class="col-3 offset-1">
+    <h2 class="text-center">Your Rooms</h2>
+    <ul class="list-group" id="channels-list">
+      <% if @channels.present? %>
+        <% @channels.each do |channel| %>
+          <li class="<%= params[:channel_id].to_i == channel.id ? 'active text-white' : '' %> list-group-item list-group-item-action" id="channel-<%=channel.id%>">
+            <%= link_to channel.name, channel_messages_path(channel), class: params[:channel_id].to_i == channel.id ? "active text-white" : '' %>
+            <span class="<%= params[:channel_id].to_i == channel.id ? 'text-white' : '' %> <%= @notification_channel_ids.include?(channel.id) ? '' : 'hidden' %> my-badge bg-danger float-right"></span>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-6">
+    <h2 class="text-center">#{@channel.name} Messages</h2>
+    <div class="div ml-5 border" id="chat" style="padding: 0px !important">
+      <div class="chat_messages" style="overflow: auto;height: 93%;overflow-x:hidden;width: 100%">
+        <% @messages.each do |message| %>
+          <%= render partial: 'message', locals: { message: message } %>
+        <% end %>
+      </div>
+      <div class="bottom" style="background: #eee;width: inherit;">
+        <%= form_for [@channel ,@message], :html => { :style => "width:inherit;display:flex", :role => "form", remote: true, id: 'message_form'}  do |f| %>
+          <%= f.text_field :message, {class: 'form-control', style: 'width:90%;display:inline-block'} %>
+          <% #  "", type: 'button', onclick: 'trigger_file()' %>
+          <button class="btn btn-parimary">
+            <%= image_tag 'image.png', style: 'width:30px;height:30px', onclick: 'return trigger_file()' %>
+          </button>
+          <%= f.file_field :avatar,id: "file-btn", class: 'hidden' %>
+          <%= f.submit "send", class: 'hidden', id: "send_message" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+    var scrollToElement = function(el, ms){
+        var speed = (ms) ? ms : 600;
+        $('html,body').animate({
+            scrollTop: $(el).offset().top
+        }, speed);
+    }
+    function trigger_file(e){
+        $("#file-btn").click();
+        return false;
+    }
+    function scroll_bottom() {
+        if($(".chat_messages").length > 0 ){
+            $(".chat_messages").animate({ scrollTop: $('.chat_messages').prop("scrollHeight") }, 1000)
+        }
+    }
+    $(function () {
+        $('input[type="text"]').emoji({
+        });
+        $("#file-btn").change(function(){
+            $("#send_message").click();
+            $("#file-btn").val("");
+        });
+        scroll_bottom();
+        $("#message_form").bind("ajax:complete", function(event,xhr,status){
+            $('#message_message').val('');
+        });
+    })
+
+</script>

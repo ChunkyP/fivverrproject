@@ -1,0 +1,45 @@
+<%= hidden_field_tag 'c_user_id', current_user.id %>
+<div class="row current_user">
+  <% if message.msg_type == "text" %>
+    <div class="col-12 mb-2">
+      <span></span>
+      <span class="other_user_text float-right">
+        <%= message.message %>
+      </span>
+      <p class="float-right" style="font-size:11px">
+        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
+      </p>
+    </div>
+  <% else %>
+    <div class="col-12 mb-2">
+      <span class="float-right">
+        <%= image_tag message.avatar.url(:medium), alt: 'image', height: '250', width: '300', class: 'img img-thumbnail' %>
+      </span>
+      <p class="float-right" style="font-size:11px">
+        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
+      </p>
+    </div>
+  <% end %>
+</div>
+<div class="row other_user">
+  <% if message.msg_type == "text" %>
+    <div class="col-12 mb-2">
+      <span class="current_user_text">
+        <%= message.message %>
+      </span>
+      <p style="font-size:11px">
+        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
+      </p>
+    </div>
+  <% else %>
+    <div class="col-12 mb-2">
+      <span>
+        <%= image_tag message.avatar.url(:medium), alt: 'image', height: '250', width: '300', class: 'img img-thumbnail' %>
+      </span>
+      <p style="font-size:11px">
+        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
+      </p>
+    </div>
+  <% end %>
+</div>
+<%= hidden_field_tag 'c_channel_id', @channel.id %>

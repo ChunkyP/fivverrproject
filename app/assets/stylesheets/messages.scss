@@ -1,0 +1,50 @@
+.other {
+  background-color: red;
+}
+
+.me{
+  background-color: green;
+}
+
+.bottom {
+  // position:absolute; bottom:0;
+}
+
+#chat {
+  height: 800px;
+}
+
+.other_user_text {
+  background-color: black;
+  color: white!important;
+  padding: 5px 10px;
+  border-radius: 14px;
+}
+
+.current_user_text {
+  background-color: blue;
+  color: white!important;
+  padding: 5px 10px;
+  border-radius: 14px;
+}
+
+.chat_messages {
+  padding: 10px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-bottom: 5px;
+}
+
+.current_user_name {
+  background-color: red;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.other_user_name {
+  background-color: green;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}

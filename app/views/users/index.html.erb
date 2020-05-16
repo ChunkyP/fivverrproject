@@ -1,0 +1,62 @@
+<div class="card">
+  <h6 class="card-header">
+    Benutzerkonten <%= link_to 'New User', new_user_path, class: 'btn btn-sm btn-success' %>
+  </h6>
+  <div class="card-datatable table-responsive">
+    <table class="datatables-demo table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Skype</th>
+        <th>Admin</th>
+        <th class="text-right">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>
+          <td><%= user.skype %></td>
+          <% if user.is_admin == true %>
+            <td class="text-center"><i class="ion ion-ios-checkmark-circle text-success"></i></td>
+          <% else %>
+            <td class="text-center"><i class="ion ion-ios-close-circle text-danger"></i></td>
+          <% end %>
+          <td class="text-right">
+            <%= link_to 'Show', user_path(user), class: 'btn btn-sm btn-info' %>
+            <%= link_to 'Edit', edit_user_registration_path, class: 'btn btn-sm btn-warning' %>
+            <%= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          </td>
+          <td style="display: none;">
+            <%= text_field_tag "channel",'', class: 'channel_field' %>
+            <%= button_tag "X", onclick: 'hide_channel_field(this)' %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+
+    function display_channel_field(this_element){
+        channel_field = $(this_element).parent().prev();
+        $(this_element).parent().addClass('hidden');
+        $(channel_field).removeClass('hidden');
+    }
+    function hide_channel_field(this_element){
+        td = $(this_element).parent();
+        $(td).addClass('hidden');
+        $(td).next().removeClass('hidden');
+    }
+
+</script>
