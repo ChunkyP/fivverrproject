@@ -3,6 +3,7 @@
 # Table name: channels
 #
 #  id         :integer          not null, primary key
+#  muted      :boolean
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

@@ -17,8 +17,9 @@
       <ul class="sidenav-menu">
         <% if @channels.present? %>
           <% @channels.each do |channel| %>
-            <li class="sidenav-item <%= params[:channel_id].to_i == channel.id ? ' active' : '' %>" id="channel-<%=channel.id %>">
+            <li class="<%= params[:channel_id].to_i == channel.id ? ' active' : '' %> channel-<%=channel.id %>" style="display: flex;align-items: center;">
               <%= link_to channel.name, channel_messages_path(channel), class: "sidenav-link" %>
+              <span style="background: red;width: 10px;height: 10px;border-radius: 50%;" class="<%= params[:channel_id].to_i == channel.id ? 'text-white' : '' %> <%= @notification_channel_ids.include?(channel.id) ? '' : 'hidden' %> my-badge bg-danger float-right"></span>
             </li>
           <% end %>
         <% end %>

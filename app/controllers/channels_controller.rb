@@ -5,6 +5,7 @@ class ChannelsController < ApplicationController
   # GET /channels.json
   def index
     @channels = Channel.all
+    @notification_channel_ids = current_user.notification_channels.pluck(:id)
   end
 
   # GET /channels/1
@@ -78,6 +79,6 @@ class ChannelsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def channel_params
-    params.require(:channel).permit(:name)
+    params.require(:channel).permit(:name, :muted)
   end
 end

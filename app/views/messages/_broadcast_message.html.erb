@@ -1,45 +1,35 @@
 <%= hidden_field_tag 'c_user_id', current_user.id %>
-<div class="row current_user">
-  <% if message.msg_type == "text" %>
-    <div class="col-12 mb-2">
-      <span></span>
-      <span class="other_user_text float-right">
+
+
+<div class="chat-message-right mb-4" style="display:flex;flex-direction:row-reverse;">
+  <div>
+    <%= image_tag message.user.avatar.url, class: "ui-w-40 rounded-circle" %>
+    <div class="text-muted small text-nowrap mt-2"><%= message.created_at.strftime("%d/%m- %R") %></div>
+  </div>
+  <div class="flex-shrink-1 bg-lighter rounded py-2 px-3 mr-3">
+    <div class="font-weight-semibold mb-1"><%= message.user.username %>
+      <% if message.msg_type == "image" %>
+        <%= image_tag message.avatar.url(:medium), height: '250', width: '300' %>
+      <%else%>
         <%= message.message %>
-      </span>
-      <p class="float-right" style="font-size:11px">
-        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
-      </p>
+      <%end%>
     </div>
-  <% else %>
-    <div class="col-12 mb-2">
-      <span class="float-right">
-        <%= image_tag message.avatar.url(:medium), alt: 'image', height: '250', width: '300', class: 'img img-thumbnail' %>
-      </span>
-      <p class="float-right" style="font-size:11px">
-        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
-      </p>
-    </div>
-  <% end %>
+  </div>
 </div>
-<div class="row other_user">
-  <% if message.msg_type == "text" %>
-    <div class="col-12 mb-2">
-      <span class="current_user_text">
-        <%= message.message %>
-      </span>
-      <p style="font-size:11px">
-        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
-      </p>
-    </div>
-  <% else %>
-    <div class="col-12 mb-2">
-      <span>
-        <%= image_tag message.avatar.url(:medium), alt: 'image', height: '250', width: '300', class: 'img img-thumbnail' %>
-      </span>
-      <p style="font-size:11px">
-        <%= message.created_at.strftime("%d/%m/%Y - %R") %>
-      </p>
-    </div>
-  <% end %>
+
+<div class="chat-message-left mb-4" style="display:flex">
+  <div>
+    <%= image_tag message.user.avatar.url, class: "ui-w-40 rounded-circle" %>
+    <div class="text-muted small text-nowrap mt-2"><%= message.created_at.strftime("%d/%m- %R") %></div>
+  </div>
+  <div class="flex-shrink-1 bg-lighter rounded py-2 px-3 ml-3">
+    <div class="font-weight-semibold mb-1"><%= message.user.username %></div>
+    <% if message.msg_type == "image" %>
+      <%= image_tag message.avatar.url(:medium), height: '250', width: '300' %>
+    <%else%>
+      <%= message.message %>
+    <%end%>
+  </div>
 </div>
+
 <%= hidden_field_tag 'c_channel_id', @channel.id %>

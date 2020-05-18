@@ -18,7 +18,7 @@ consumer.subscriptions.create("ChatroomChannel", {
   received(data) {
     var user_id = $("#user_idd").val();
     var channel_id = $("#c_channel_id").val();
-    var channel_item = $("#channel-"+$(data.message).last().val());
+    var channel_item = $(".channel-"+$(data.message).last().val());
     if(!channel_item.hasClass('active')){
       $.ajax({
         method: 'POSt',
@@ -27,6 +27,12 @@ consumer.subscriptions.create("ChatroomChannel", {
         success: function(){
           var badge = $(channel_item).find('.my-badge');
           $(badge).css('display','block');
+          var muted = $("#muted").val();
+          var muted_channel_ids = muted.split(",");
+          if(muted.indexOf($(data.message).last().val()) == "-1" && $(data.message).last().val() != channel_id){
+            $('audio')[0].click();  
+            $('audio')[0].play();
+          }
         },
         error: function(){
 
@@ -35,9 +41,9 @@ consumer.subscriptions.create("ChatroomChannel", {
     };
     if (channel_id == $(data.message).last().val()){
       if(user_id == $(data.message).first().val()){
-        $(".chat_messages").append($(data.message)[4]);
-      }else{
         $(".chat_messages").append($(data.message)[2]);
+      }else{
+        $(".chat_messages").append($(data.message)[4]);
       }
       scroll_bottom();
     }

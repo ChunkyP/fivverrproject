@@ -1,0 +1,26 @@
+
+.hidden {
+    display: none;
+}
+
+.text-white{
+    color: white !important;
+}
+
+.my-badge{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none;
+}
+
+.chat-message-right {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: row-reverse;
+    margin-left: auto;
+  
+  }

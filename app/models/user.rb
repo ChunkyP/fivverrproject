@@ -3,6 +3,10 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  avatar_content_type    :string
+#  avatar_file_name       :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  firstname              :string
@@ -34,6 +38,9 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
+  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\z}
+  
   def notification_channels
     ChannelsUsers.where(read: false, user_id: id, channel_id: channels)
   end
