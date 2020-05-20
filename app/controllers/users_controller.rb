@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @channels = @user.channels
+    @notification_channel_ids = current_user.notification_channels.pluck(:id)
   end
 
   def edit

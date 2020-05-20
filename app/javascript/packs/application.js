@@ -24,8 +24,8 @@ function submit_message() {
 // $("#message_form").submit();
 //       $("#message_message").val("");
 function scroll_bottom() {
-    if($(".chat_messages").length > 0 ){
-        $(".chat_messages").animate({ scrollTop: $('.chat_messages').prop("scrollHeight") }, 1000)
+    if($(".chat_messages_parent").length > 0 ){
+        $(".chat_messages_parent").animate({ scrollTop: $('.chat_messages_parent').prop("scrollHeight") }, 1000)
     }
 }
 /*$(function () {

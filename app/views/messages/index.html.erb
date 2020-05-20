@@ -53,7 +53,7 @@
       </div>
       <hr class="flex-grow-0 border-light m-0">
 
-      <div class="flex-grow-1 position-relative">
+      <div class="flex-grow-1 position-relative chat_messages_parent" style="overflow: auto;height: 63vh;">
 
         <div class="chat_messages chat-scroll p-4">
 
@@ -109,8 +109,8 @@
       return false;
   }
   function scroll_bottom() {
-      if($(".chat_messages").length > 0 ){
-          $(".chat_messages").animate({ scrollTop: $('.chat_messages').prop("scrollHeight") }, 1000)
+      if($(".chat_messages_parent").length > 0 ){
+          $(".chat_messages_parent").animate({ scrollTop: $('.chat_messages_parent').prop("scrollHeight") }, 1000)
       }
   }
   $(function () {

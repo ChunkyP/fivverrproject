@@ -1,8 +1,8 @@
 import consumer from "./consumer"
 
 function scroll_bottom() {
-  if($(".chat_messages").length > 0 ){
-    $(".chat_messages").scrollTop($(".chat_messages")[0].scrollHeight)
+  if($(".chat_messages_parent").length > 0 ){
+    $(".chat_messages_parent").scrollTop($(".chat_messages_parent")[0].scrollHeight)
   }
 }
 
