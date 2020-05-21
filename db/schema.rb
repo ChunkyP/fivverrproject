@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_123200) do
+ActiveRecord::Schema.define(version: 2020_05_21_075616) do
 
   create_table "channels", force: :cascade do |t|
     t.string "name"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(version: 2020_05_18_123200) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.date "dob"
+    t.string "twitter"
+    t.string "facebook"
+    t.string "instagram"
+    t.string "phone"
+    t.string "mobile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
