@@ -1,13 +1,11 @@
 <div class="authentication-wrapper authentication-1 px-4 mx-auto" style="max-width: 40%" >
   <div class="authentication-inner py-5">
-    <div style="margin-left: 200px;">
-      <%= image_tag 'logo.png', class: 'mx-auto py-4 text-center', width: '250px' %>
-    </div>
+
     <!-- Form -->
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'my-5') do |f| %>
       <div class="form-group">
-        <label class="form-label">Email oder Username</label>
-        <%= f.text_field :login, autofocus: true, autocomplete: "email or username", class: 'form-control' %>
+        <label class="form-label">Email</label>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email or username", class: 'form-control' %>
       </div>
       <div class="form-group">
         <label class="form-label d-flex justify-content-between align-items-end">

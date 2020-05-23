@@ -4,13 +4,8 @@ class ApplicationController < ActionController::Base
   # Default layout
   layout :layout_by_resource
 
-  protected
-
   def configure_permitted_parameters
-    update_attrs = %i[username firstname lastname email skype avatar password password_confirmation
-                    current_password dob is_admin facebook instagram mobile notice
-                    phone twitter]
-    devise_parameter_sanitizer.permit :sign_up, keys: update_attrs
+    update_attrs = [:username, :firstname, :lastname, :email, :skype, :avatar, :password, :password_confirmation, :current_password]
     devise_parameter_sanitizer.permit :account_update, keys: update_attrs
   end
 
