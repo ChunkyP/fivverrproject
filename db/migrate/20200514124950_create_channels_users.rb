@@ -1,7 +1,5 @@
 class CreateChannelsUsers < ActiveRecord::Migration[6.0]
   def change
-    drop_table :channels_users
-
     create_table :channels_users do |t|
       add_column :channels_users, :user_id, :bigint
       add_column :channels_users, :channel_id, :bigint
