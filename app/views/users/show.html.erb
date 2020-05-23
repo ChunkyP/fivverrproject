@@ -1,3 +1,4 @@
+<% if current_user.is_admin %>
 <% if flash[:notice].present? %>
   <div class="row">
     <div class="col-6 offset-3">
@@ -62,3 +63,9 @@
     <% end %>
   </div>
 </div>
+<% else %>
+<div class="alert alert-dark-danger alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  Sie haben versucht auf einen geschützen Bereich zuzugreifen. Ein Admin wurde darüber informiert.
+</div>
+<% end %>

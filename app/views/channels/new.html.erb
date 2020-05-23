@@ -1,5 +1,12 @@
+<% if current_user.is_admin %>
 <h1>New Channel</h1>
 
 <%= render 'form', channel: @channel %>
 
 <%= link_to 'Back', channels_path %>
+<% else %>
+<div class="alert alert-dark-danger alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  Sie haben versucht auf einen geschützen Bereich zuzugreifen. Ein Admin wurde darüber informiert.
+</div>
+<% end %>
