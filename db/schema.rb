@@ -19,16 +19,6 @@ ActiveRecord::Schema.define(version: 2020_05_21_075616) do
     t.boolean "muted"
   end
 
-  create_table "channels_users", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
-    t.bigint "channel_id", null: false
-    t.boolean "read"
-    t.index ["channel_id"], name: "index_channels_users_on_channel_id"
-    t.index ["user_id"], name: "index_channels_users_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.string "message"
     t.text "body"
