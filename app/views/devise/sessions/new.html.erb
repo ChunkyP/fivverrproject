@@ -1,15 +1,17 @@
 <div class="authentication-wrapper authentication-1 px-4 mx-auto" style="max-width: 40%" >
   <div class="authentication-inner py-5">
-
+    <div style="margin-left: 220px; margin-bottom: 20px;">
+      <%= image_tag 'logo.png', style: 'width: 250px;' %>
+    </div>
     <!-- Form -->
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'my-5') do |f| %>
       <div class="form-group">
-        <label class="form-label">Email</label>
+        <label class="form-label">Email oder Username</label>
         <%= f.email_field :email, autofocus: true, autocomplete: "email or username", class: 'form-control' %>
       </div>
       <div class="form-group">
         <label class="form-label d-flex justify-content-between align-items-end">
-          <div>Password</div>
+          <div>Passwort</div>
         </label>
         <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
       </div>
@@ -17,10 +19,10 @@
         <% if devise_mapping.rememberable? %>
         <label class="custom-control custom-checkbox m-0">
           <%= f.check_box :remember_me, class: 'custom-control-input' %>
-          <span class="custom-control-label">Remember me</span>
+          <span class="custom-control-label">Eingeloggt bleiben</span>
         </label>
         <% end %>
-        <%= f.submit "Log in", class: 'btn btn-primary' %>
+        <%= f.submit "Anmelden", class: 'btn btn-primary' %>
       </div>
     <% end %>
     <!-- / Form -->
