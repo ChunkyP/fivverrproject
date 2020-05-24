@@ -54,10 +54,6 @@ class User < ApplicationRecord
     ChannelsUsers.where(read: false, user_id: id, channel_id: channels)
   end
 
-  def self.create_new_user(params)
-    @user = User.create!(params)
-  end
-
   def login
     @login || self.username || self.email
   end
@@ -75,5 +71,9 @@ class User < ApplicationRecord
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
       where(conditions.to_h).first
     end
+  end
+
+  def self.create_new_user(params)
+    @user = User.create!(params)
   end
 end

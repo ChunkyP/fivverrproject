@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root 'home#index'
-
+  devise_for :users, path_names: { registration: 'registration' }
   resources :users do
     match '/savenew', to: 'users#savenew', via: :post
   end
+
+  root 'home#index'
 
   post '/add_to_channel' => 'users#add_to_channel', as: 'add_to_channel'
   post '/make-notification' => 'users#make_notification'

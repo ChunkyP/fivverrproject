@@ -11,26 +11,6 @@ class UsersController < ApplicationController
     @notification_channel_ids = current_user.notification_channels.pluck(:id)
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # POST /users
-  # POST /users.json
-  def create
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save(:validate => false)
-        format.html { redirect_to users_path, notice: 'User was successfully created.' }
-        format.json { render :'users/index', status: :created, location: users_path }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def edit
   end
 
@@ -46,7 +26,27 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path, notice: 'User deleted successfully.'
   end
-  
+
+# GET /users/new
+  def new
+    @user = User.new
+  end
+
+# POST /users
+# POST /users.json
+  def create
+    @user = User.new(user_params)
+    respond_to do |format|
+      if @user.save(:validate => false)
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def add_to_channel
     channel_id = params[:user][:channel_ids]
     user_id = params[:user][:user_id]
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :confirm_password, :skype, :firstname, :lastname,
+    params.require(:user).permit(:username, :email, :password, :confirm_password, :skype, :firstname, :lastname,
                                  :notice, :dob, :twitter, :instagram, :facebook, :phone, :mobile)
   end
 end

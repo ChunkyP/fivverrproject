@@ -17,7 +17,7 @@
       <tr>
         <td><%= channel.name %></td>
         <td><%= link_to "Go To Messages", channel_messages_path(channel) %></td>
-        <%= channel.users.count %>
+        <td><%= channel.users.count %></td>
         <td class="text-right" >
           <%= link_to 'Show', channel_path(channel), class: 'btn btn-sm btn-info' %>
           <%= link_to 'Edit', edit_channel_path(channel), class: 'btn btn-sm btn-warning' %>
