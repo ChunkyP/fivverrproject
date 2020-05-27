@@ -1,0 +1,119 @@
+<% if current_user.superadmin %>
+
+  <% content_for :styles do %>
+    <%= stylesheet_pack_tag 'vendor/pages/users', media: 'all' %>
+  <% end %>
+
+  <div class="nav-tabs-top">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#user-edit-account">Konto</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#user-edit-info">Informationen</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#user-edit-notice">Notizen</a>
+      </li>
+    </ul>
+    <%= form_with(model: @account, class: 'tab-content') do |f| %>
+      <div class="tab-pane fade show active" id="user-edit-account">
+
+        <hr class="border-light m-0">
+        <div class="card-body pb-2">
+          <div class="form-group">
+            <label class="form-label">Email</label><br/>
+            <% if current_user.is_admin %>
+              <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+            <% else %>
+              <%= f.email_field :email, autocomplete: "email", class: "form-control", disabled: true %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Username</label>
+            <% if current_user.is_admin %>
+              <%= f.text_field :username, class: "form-control" %>
+            <% else %>
+              <%= f.text_field :username, class: "form-control", disabled: true %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Passwort</label><i>(leer lassen falls es nicht geändert werden soll)</i><br/>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          </div>
+
+          <div class="card-body pb-2">
+
+            <h6 class="mb-4">ADMIN RECHTE</h6>
+            <label class="custom-control custom-checkbox">
+              <%= f.check_box :is_admin, class: 'custom-control-input' %>
+              <span class="custom-control-label">ROT = IST ADMIN</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="user-edit-info">
+
+        <div class="card-body pb-2">
+
+          <h6 class="mb-4">Persönliche Daten</h6>
+          <div class="form-group">
+            <label class="form-label">Vorname</label>
+            <%= f.text_field :firstname, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nachname</label>
+            <%= f.text_field :lastname, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Geburtsdatum</label>
+            <%= f.date_field :dob, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Telefonnummer</label>
+            <%= f.text_field :phone, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Handynummer</label>
+            <%= f.text_field :mobile, class: 'form-control' %>
+          </div>
+
+        </div>
+
+        <hr class="border-light m-0">
+        <div class="card-body pb-2">
+
+          <h6 class="mb-4">Social Media</h6>
+          <div class="form-group">
+            <label class="form-label">Facebook</label>
+            <%= f.text_field :facebook, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Instagram</label>
+            <%= f.text_field :instagram, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Skype</label>
+            <%= f.text_field :skype, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Twitter</label>
+            <%= f.text_field :twitter, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="user-edit-notice">
+
+        <div class="card-body pb-2">
+          <%= f.text_area :notice, class: 'form-control', rows: 5 %>
+        </div>
+
+      </div>
+      </div>
+      <div class="text-right mt-3 mb-3">
+        <%= f.submit 'Speichern', class: 'btn btn-primary' %>&nbsp;
+        <%= link_to 'Abbrechen', root_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+<% end %>

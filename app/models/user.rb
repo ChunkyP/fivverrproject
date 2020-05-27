@@ -22,6 +22,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  skype                  :string
+#  superadmin             :boolean
 #  twitter                :string
 #  username               :string
 #  created_at             :datetime         not null
@@ -68,7 +69,7 @@ class User < ApplicationRecord
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
       where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+    elsif conditions.key?(:username) || conditions.key?(:email)
       where(conditions.to_h).first
     end
   end

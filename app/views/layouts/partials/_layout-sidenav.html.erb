@@ -61,6 +61,14 @@
             <div>User</div>
           <% end %>
         </li>
+
+        <% if current_user.superadmin %>
+        <li class="sidenav-item<%= current_page?(accounts_path) ? ' active' : '' %>">
+          <%= link_to accounts_path, class: "sidenav-link" do %>
+            <div>Superadmin</div>
+          <% end %>
+        </li>
+        <% end %>
       </ul>
     </li>
     <% end %>
