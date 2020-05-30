@@ -38,9 +38,6 @@
         <% @conversations.each do |conversation| %>
         <li class="list-group-item px-4">
           <div class="message-sender text-body d-block col-4">
-            <% unless conversation.unread_nachrichten_count(current_user).zero? %>
-              <span class="badge badge-dot badge-danger mr-1"></span>
-            <% end %>
             <%= conversation.recipient(current_user).username %>
           </div>
           <div>
