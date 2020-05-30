@@ -24,6 +24,12 @@
 
     <div class="navbar-nav align-items-lg-center ml-auto">
 
+      <div class="demo-navbar-messages nav-item mr-lg-3">
+        <%= link_to conversations_index_path, class: 'nav-link hide-arrow' do %>
+          <i class="ion ion-ios-mail navbar-icon align-middle"></i>
+        <% end %>
+      </div>
+
       <!-- Divider -->
       <% if user_signed_in? %>
       <div class="nav-item d-none d-lg-block text-big font-weight-light line-height-1 opacity-25 mr-3 ml-1">|</div>

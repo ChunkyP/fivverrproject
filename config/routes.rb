@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, path_names: { registration: 'registration' }
+  get 'nachrichtens/index'
+  get 'conversations/index'
+  devise_for :users, path_names: {registration: 'registration'}
   resources :users do
     match '/savenew', to: 'users#savenew', via: :post
   end
@@ -15,6 +17,10 @@ Rails.application.routes.draw do
     member do
       get 'add_new_user'
     end
+  end
+
+  resources :conversations, only: [:index, :create] do
+    resources :nachrichtens, only: [:index, :create]
   end
 
   mount ActionCable.server, at: '/cable'

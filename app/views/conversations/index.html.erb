@@ -1,0 +1,57 @@
+<% content_for :styles do %>
+  <!-- Page -->
+  <%= stylesheet_pack_tag 'vendor/pages/messages', media: 'all' %>
+<% end %>
+
+<!--
+=================================================================
+**************************** CONTENT ****************************
+-->
+
+<div class="row">
+
+  <!-- Messages sidebox -->
+  <div class="messages-sidebox col mb-4 px-4">
+
+    <!-- Labels -->
+    <h6 class="text-sm font-weight-bold">Benutzer</h6>
+    <% @users.each do |user| %>
+      <li class="d-block text-muted py-1">
+        <%= link_to user.username, conversations_path(sender_id: current_user.id, receiver_id: user.id), method: :post, class: '' %>
+      </li>
+    <% end %>
+  </div>
+  <!-- / Messages sidebox -->
+
+  <div class="col">
+
+    <!-- Messages list -->
+    <div class="card">
+
+      <!-- Header -->
+      <h4 class="card-header media flex-wrap align-items-center py-4">
+        <div class="media-body"><i class="ion ion-ios-filing"></i> &nbsp; Nachrichtensystem</div>
+      </h4>
+      <!-- / Header -->
+
+      <ul class="list-group messages-list">
+        <% @conversations.each do |conversation| %>
+        <li class="list-group-item px-4">
+          <div class="message-sender text-body d-block col-4">
+            <% unless conversation.unread_nachrichten_count(current_user).zero? %>
+              <span class="badge badge-dot badge-danger mr-1"></span>
+            <% end %>
+            <%= conversation.recipient(current_user).username %>
+          </div>
+          <div>
+            <%= link_to 'Nachricht öffnen', conversation_nachrichtens_path(conversation), class: 'message-subject text-body d-block' %>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+
+    </div>
+    <!-- / Messages list -->
+
+  </div>
+</div>

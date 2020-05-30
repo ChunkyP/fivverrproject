@@ -1,0 +1,51 @@
+<% content_for :styles do %>
+  <!-- Page -->
+  <%= stylesheet_pack_tag 'vendor/pages/messages', media: 'all' %>
+<% end %>
+
+<!--
+=================================================================
+**************************** CONTENT ****************************
+-->
+<% @nachrichtens.each do |nachrichten| %>
+<div class="row w-100">
+  <% if nachrichten.body %>
+  <div class="pb-2 w-100">
+    <div class="card w-100">
+      <!-- Header -->
+      <div class="media p-2">
+        <!-- Sender photo -->
+        <%= image_tag nachrichten.user.avatar.url, class: "d-block ui-w-40 rounded-circle" %>
+        <div class="media-body pl-3">
+          <!-- Sender & date -->
+          <div class="d-block">
+            <%= nachrichten.user.username %><br>
+            <span class="text-muted">
+              <%= nachrichten.created_at %>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr class="border-light m-0">
+      <!-- / Header -->
+
+      <!-- Message content -->
+      <div class="p-2">
+        <p><%= nachrichten.body %></p>
+      </div>
+      <!-- / Message content -->
+    </div>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
+<div class="row w-100">
+<%= form_for [@conversation, @nachrichten], html: {class: 'w-100'} do |f| %>
+  <%= f.text_area :body, class: 'form-control', placeholder: "Deine Nachricht", rows: 5 %>
+
+  <div class="text-right mt-1">
+  <%= f.submit "Abschicken", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>
