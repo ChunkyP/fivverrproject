@@ -7,8 +7,6 @@ class NachrichtensController < ApplicationController
   def index
     @nachrichtens = @conversation.nachrichten
 
-    @nachrichtens.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
-
     @nachrichten = @conversation.nachrichten.new
   end
 
