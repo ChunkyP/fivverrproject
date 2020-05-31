@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     update_attrs = [:username, :firstname, :lastname, :email, :skype, :avatar, :password, :password_confirmation,
-                    :current_password, :is_admin]
+                    :current_password, :is_admin, :avatar]
     devise_parameter_sanitizer.permit :sign_up, keys: update_attrs
     devise_parameter_sanitizer.permit :account_update, keys: update_attrs
   end

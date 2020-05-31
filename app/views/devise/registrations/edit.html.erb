@@ -26,11 +26,11 @@
         <div class="card-body">
 
           <div class="media align-items-center">
-            <%= image_tag resource.avatar.url, class: "d-block ui-w-80" %>
+            <%= image_tag user_avatar(resource, 100), class: "d-block ui-w-80" %>
             <div class="media-body ml-3">
               <label class="form-label d-block mb-2">Avatar</label>
               <label class="btn btn-outline-primary btn-sm">
-                <%= f.file_field :avatar, as: :file, class: 'user-edit-fileinput' %>
+                <%= f.file_field :avatar, class: 'user-edit-fileinput' %>
               </label>&nbsp;
             </div>
           </div>
