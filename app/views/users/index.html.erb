@@ -1,6 +1,6 @@
 <div class="card">
   <h6 class="card-header">
-    Benutzerkonten <%= link_to 'New User', new_user_path, class: 'btn btn-sm btn-success' %>
+    Benutzerkonten <%= link_to 'Neuer User', new_user_path, class: 'btn btn-sm btn-success' %>
   </h6>
   <div class="card-datatable table-responsive">
     <table class="datatables-demo table table-striped table-bordered">
@@ -13,7 +13,7 @@
         <th>Nachname</th>
         <th>Skype</th>
         <th>Admin</th>
-        <th class="text-right">Actions</th>
+        <th class="text-right">Aktionen</th>
       </tr>
       </thead>
       <tbody>
@@ -31,7 +31,7 @@
             <td class="text-center"><i class="ion ion-ios-close-circle text-danger"></i></td>
           <% end %>
           <td class="text-right">
-            <%= link_to 'Show', user_path(user), class: 'btn btn-sm btn-info' %>
+            <%= link_to 'Öffnen', user_path(user), class: 'btn btn-sm btn-info' %>
           </td>
           <td style="display: none;">
             <%= text_field_tag "channel",'', class: 'channel_field' %>

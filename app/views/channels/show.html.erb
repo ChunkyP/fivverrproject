@@ -2,7 +2,7 @@
   <thead class="bg-primary text-white">
   <tr>
     <th>Name</th>
-    <th colspan="1">Action</th>
+    <th colspan="1">Aktionen</th>
   </tr>
   </thead>
   <tbody>
@@ -13,7 +13,7 @@
           <%= user.username %>
         </td>
         <td>
-          <%= link_to "Delete", remove_user_path(user,channel_id: @channel.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to "Delete", remove_user_path(user,channel_id: @channel.id), method: :delete, data: { confirm: 'Bist du sicher?' } %>
         </td>
       </tr>
     <% end %>

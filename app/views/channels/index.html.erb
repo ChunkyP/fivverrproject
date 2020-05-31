@@ -1,6 +1,6 @@
 <div class="card">
   <h6 class="card-header">
-    Chaträume <%= link_to 'New Chatroom', new_channel_path, class: 'btn btn-sm btn-success' %>
+    Chaträume <%= link_to 'Neuen Channel erstellen', new_channel_path, class: 'btn btn-sm btn-success' %>
   </h6>
   <div class="card-datatable table-responsive">
     <table class="datatables-demo table table-striped table-bordered">
@@ -9,19 +9,19 @@
         <th>Name</th>
         <th>Nachrichten</th>
         <th>User</th>
-        <th class="text-right">Actions</th>
+        <th class="text-right">Aktionen</th>
       </tr>
       </thead>
       <tbody>
       <% @channels.each do |channel| %>
       <tr>
         <td><%= channel.name %></td>
-        <td><%= link_to "Go To Messages", channel_messages_path(channel) %></td>
+        <td><%= link_to "Zu dem Chat", channel_messages_path(channel) %></td>
         <td><%= channel.users.count %></td>
         <td class="text-right" >
-          <%= link_to 'Show', channel_path(channel), class: 'btn btn-sm btn-info' %>
-          <%= link_to 'Edit', edit_channel_path(channel), class: 'btn btn-sm btn-warning' %>
-          <%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          <%= link_to 'Öffnen', channel_path(channel), class: 'btn btn-sm btn-info' %>
+          <%= link_to 'Beaarbeiten', edit_channel_path(channel), class: 'btn btn-sm btn-warning' %>
+          <%= link_to 'Löschen', channel, method: :delete, data: { confirm: 'Bist du sicher?' }, class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>
       <% end %>

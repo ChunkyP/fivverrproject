@@ -14,7 +14,7 @@
         <th>Nachname</th>
         <th>Skype</th>
         <th>Admin</th>
-        <th class="text-right">Actions</th>
+        <th class="text-right">Aktionen</th>
       </tr>
       </thead>
       <tbody>
@@ -32,8 +32,8 @@
             <td class="text-center"><i class="ion ion-ios-close-circle text-danger"></i></td>
           <% end %>
           <td class="text-right">
-            <%= link_to 'Edit', edit_account_path(account), class: 'btn btn-sm btn-warning' %>
-            <%= link_to 'Destroy', account_path(account), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+            <%= link_to 'Bearbeiten', edit_account_path(account), class: 'btn btn-sm btn-warning' %>
+            <%= link_to 'Löschen', account_path(account), method: :delete, data: { confirm: 'Bist du dir sicher?' }, class: 'btn btn-sm btn-danger' %>
           </td>
           <td style="display: none;">
             <%= text_field_tag "channel",'', class: 'channel_field' %>
