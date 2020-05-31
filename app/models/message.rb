@@ -27,5 +27,6 @@ class Message < ApplicationRecord
 
   enum msg_type: { 'text' => 0, 'image' => 1 }
 
-  has_one_attached :file
+  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\z}
 end
