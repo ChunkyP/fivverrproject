@@ -2,6 +2,7 @@
 <% if message.user == current_user %>
   <div class="chat-message-right mb-4" style="display:flex;flex-direction:row-reverse;">
     <div>
+      <%= image_tag user_avatar(message.user, 80), class: "ui-w-40 rounded-circle" %>
       <div class="text-muted small text-nowrap mt-2"><%= message.created_at.strftime("%d/%m- %R") %></div>
     </div>
     <div class="flex-shrink-1 bg-lighter rounded py-2 px-3 mr-3" style="text-align:right">
@@ -17,6 +18,7 @@
 
   <div class="chat-message-left mb-4" style="display:flex">
     <div>
+    <%= image_tag user_avatar(message.user, 80), class: "ui-w-40 rounded-circle" %>
       <div class="text-muted small text-nowrap mt-2"><%= message.created_at.strftime("%d/%m- %R") %></div>
     </div>
     <div class="flex-shrink-1 bg-lighter rounded py-2 px-3 ml-3">
