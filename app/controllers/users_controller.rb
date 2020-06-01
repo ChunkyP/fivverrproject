@@ -16,15 +16,15 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to users_path, notice: 'User updated successfully.'
+      redirect_to users_path, notice: 'Benutzer erfolgreich geändert.'
     else
-      redirect_to users_path, notice: 'Error updating user.'
+      redirect_to users_path, notice: 'Fehler bei den Änderungen.'
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: 'User deleted successfully.'
+    redirect_to users_path, notice: 'Benutzer erfolgreich gelöscht.'
   end
 
 # GET /users/new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save(:validate => false)
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'Benutzer erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -52,12 +52,12 @@ class UsersController < ApplicationController
     user_id = params[:user][:user_id]
     @channel_user = ChannelsUsers.new(channel_id: channel_id, user_id: user_id)
     if @channel_user.save
-      redirect_to user_path(user_id), notice: 'User added to room'
+      redirect_to user_path(user_id), notice: 'Benutzer hinzugefügt'
     else
       if channel_id.blank?
-        redirect_to user_path(user_id), alert: 'Please select room.'
+        redirect_to user_path(user_id), alert: 'Bitte einen Chat wählen.'
       else
-        redirect_to user_path(user_id), alert: 'User is already in this room'
+        redirect_to user_path(user_id), alert: 'Benutzer diesem Chat bereits zugewiesen.'
       end
     end
   end
