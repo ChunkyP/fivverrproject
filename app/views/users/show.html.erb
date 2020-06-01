@@ -21,7 +21,6 @@
 <% end %>
 <div class="row">
   <div class="col-6">
-    <h1>Userprofil</h1>
     <table class="table table-bordered table-hover">
       <thead class="thead-dark">
       <tr>
@@ -52,7 +51,6 @@
     <h3 class="text-center">User hinzufügen</h3>
     <%= form_for(:user, url: add_to_channel_path) do |f| %>
       <div class="form-group">
-        <%= f.label 'Chat auswählen' %>
         <%= f.select :channel_ids, options_for_select(Channel.all.map{|c| [c.name,c.id]}),{include_blank: 'Chat auswählen'}, {class: 'form-control'} %>
         <%= f.hidden_field :user_id, value: @user.id %>
       </div>
