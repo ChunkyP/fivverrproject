@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  avatar_content_type    :string
 #  avatar_file_name       :string
 #  avatar_file_size       :integer

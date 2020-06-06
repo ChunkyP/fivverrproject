@@ -25,13 +25,15 @@ consumer.subscriptions.create("ChatroomChannel", {
         url: '/make-notification',
         data: {channel_id: $(data.message).last().val(), user_id: user_id},
         success: function(){
-          var badge = $(channel_item).find('.my-badge');
-          $(badge).css('display','block');
-          var muted = $("#muted").val();
-          var muted_channel_ids = muted.split(",");
-          if(muted.indexOf($(data.message).last().val()) == "-1" && $(data.message).last().val() != channel_id){
-            $('audio')[0].click();  
-            $('audio')[0].play();
+          if($("#user_idd").val() != $(data.message).first().val() ){
+            var badge = $(channel_item).find('.my-badge');
+            $(badge).css('display','block');
+            var muted = $("#muted").val();
+            var muted_channel_ids = muted.split(",");
+            if(muted.indexOf($(data.message).last().val()) == "-1" && $(data.message).last().val() != channel_id){
+              $('audio')[0].click();
+              $('audio')[0].play();
+            }
           }
         },
         error: function(){

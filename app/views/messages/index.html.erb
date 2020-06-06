@@ -28,8 +28,8 @@
 
         <% if @channels.present? %>
           <% @channels.each do |channel| %>
-            <div class="list-group-item list-group-item-action online channel-<%=channel.id %>" style="display: flex;align-items: center;justify-content: space-between;">
-              <%= link_to channel.name, channel_messages_path(channel), class: " #{params[:channel_id].to_i == channel.id} ? 'active text-white' : ''" %>
+            <div class="list-group-item list-group-item-action online channel-<%=channel.id %> <%= params[:channel_id].to_i == channel.id ? 'active text-white' : '' %>" style="display: flex;align-items: center;justify-content: space-between;">
+              <%= link_to channel.name, channel_messages_path(channel), class: " #{params[:channel_id].to_i == channel.id ? 'active text-white' : ''}" %>
               <span style="background: red;width: 10px;height: 10px;border-radius: 50%;" class="<%= params[:channel_id].to_i == channel.id ? 'text-white' : '' %> <%= @notification_channel_ids.include?(channel.id) ? '' : 'hidden' %> my-badge bg-danger float-right"></span>
             </div>
           <%end%>
