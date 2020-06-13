@@ -208,6 +208,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
@@ -254,12 +255,13 @@ DEPENDENCIES
   paperclip (~> 6.0.0)
   pg (>= 0.18, < 2.0)
   puma (~> 4.3, >= 4.3.5)
-  rails (~> 6.0.2, >= 6.0.2.1)
+  rails (~> 6.0, >= 6.0.3.1)
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  sqlite3 (~> 1.4, >= 1.4.2)
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers

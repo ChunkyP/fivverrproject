@@ -20,7 +20,7 @@
         <td><%= channel.users.count %></td>
         <td class="text-right" >
           <%= link_to 'Öffnen', channel_path(channel), class: 'btn btn-sm btn-info' %>
-          <%= link_to 'Beaarbeiten', edit_channel_path(channel), class: 'btn btn-sm btn-warning' %>
+          <%= link_to 'Bearbeiten', edit_channel_path(channel), class: 'btn btn-sm btn-warning' %>
           <%= link_to 'Löschen', channel, method: :delete, data: { confirm: 'Bist du sicher?' }, class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>

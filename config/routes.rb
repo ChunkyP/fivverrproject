@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     match '/savenew', to: 'users#savenew', via: :post
   end
   resources :accounts
+  resources :messages do
+    get '/all' => 'messages#show_archive'
+  end
 
   root 'home#index'
 

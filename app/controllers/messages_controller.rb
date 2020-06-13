@@ -1,6 +1,11 @@
 class MessagesController < ApplicationController
   before_action :find_channel, only: %i[index create]
 
+
+  def show_archive
+    @messages = Message.all
+  end
+
   # GET /messages
   # GET /messages.json
   def index
@@ -28,7 +33,7 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'chatroom_channel', message: render_message(@message)
     end
   end
-  
+
   # DELETE /messages/1
   # DELETE /messages/1.json
   def destroy

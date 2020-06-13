@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Stuff was successfully created.' }
+        format.html { redirect_to @account, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Stuff was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +70,6 @@ class AccountsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def account_params
     params.fetch(:account).permit(:username, :email, :password, :confirm_password, :skype, :firstname, :lastname,
-                                  :notice, :dob, :twitter, :instagram, :facebook, :phone, :mobile, :is_admin)
+                                  :notice, :dob, :twitter, :instagram, :facebook, :phone, :mobile, :is_admin,)
   end
 end
