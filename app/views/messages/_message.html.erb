@@ -8,7 +8,7 @@
     <div class="flex-shrink-1 bg-lighter rounded py-2 px-3 mr-3" style="text-align:right">
       <div class="font-weight-semibold mb-1"><%= message.user.username %></div>
       <% if message.msg_type == "image" %>
-        <%= link_to image_tag(message.avatar.url(:medium), height: '250', width: '300'), message.avatar.url, {target: '_blank'} %>
+        <%= link_to image_tag(message.avatar, height: '250', width: '300'), message.avatar, {target: '_blank'} %>
       <% else %>
         <%= message.message %>
       <% end %>
@@ -24,7 +24,7 @@
     <div class="flex-shrink-1 bg-lighter rounded py-2 px-3 ml-3">
       <div class="font-weight-semibold mb-1"><%= message.user.username %></div>
       <% if message.msg_type == "image" %>
-        <%= link_to image_tag(message.avatar.url(:medium), height: '250', width: '300'), message.avatar.url, {target: '_blank'}%>
+        <%= link_to image_tag(message.avatar, height: '250', width: '300'), message.avatar, {target: '_blank'}%>
       <% else %>
         <%= message.message %>
       <% end %>

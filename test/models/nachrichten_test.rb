@@ -2,13 +2,13 @@
 #
 # Table name: nachrichtens
 #
-#  id              :bigint           not null, primary key
+#  id              :integer          not null, primary key
 #  body            :text
 #  read            :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  conversation_id :bigint
-#  user_id         :bigint
+#  conversation_id :integer
+#  user_id         :integer
 #
 # Indexes
 #
@@ -17,8 +17,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (conversation_id => conversations.id)
-#  fk_rails_...  (user_id => users.id)
+#  conversation_id  (conversation_id => conversations.id)
+#  user_id          (user_id => users.id)
 #
 require 'test_helper'
 

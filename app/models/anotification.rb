@@ -1,15 +1,12 @@
 # == Schema Information
 #
-# Table name: channels
+# Table name: admin_notifications
 #
 #  id         :integer          not null, primary key
-#  muted      :boolean
-#  name       :string
+#  body       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Channel < ApplicationRecord
-  validates :name, uniqueness: true
-  has_many :messages, dependent: :destroy
+class Anotification < ApplicationRecord
   has_and_belongs_to_many :users
 end

@@ -1,0 +1,19 @@
+
+<div class="row">
+  <%if @ready_by.present? %>
+    <%@ready_by.each do |user| %>
+      <div class="col-lg-3 name-col">
+        <%= user.username %>
+      </div>
+    <%end%>
+  <%else%>
+    <h1>Still no user read this...</h1>
+  <%end%>
+</div>
+<style>
+  .name-col {
+    border: solid 1px #e4e4e4;
+    text-align: center;
+    padding: 5px;
+  }
+</style>

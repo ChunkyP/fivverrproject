@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @admin_notification.body %>
+</p>
+
+<%if current_user.superadmin?%>
+  <%= link_to 'Edit', edit_anotification_path(@admin_notification) %> |
+<%end%>

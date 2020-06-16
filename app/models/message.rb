@@ -1,8 +1,7 @@
-# == Schema Information
 #
 # Table name: messages
 #
-#  id                  :bigint           not null, primary key
+#  id                  :integer          not null, primary key
 #  avatar_content_type :string
 #  avatar_file_name    :string
 #  avatar_file_size    :integer
@@ -27,6 +26,7 @@ class Message < ApplicationRecord
 
   enum msg_type: { 'text' => 0, 'image' => 1 }
 
-  has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
-  validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\z}
+  has_one_attached :avatar
+  # has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
+  # validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\z}
 end

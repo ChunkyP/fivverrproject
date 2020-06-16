@@ -1,0 +1,47 @@
+
+<% notifiction_flag = true %>
+<div>
+  <% @admin_notifications.each do |anotification| %>
+    <% unless anotification.users.include?(current_user) %>
+      <% notifiction_flag = false %>
+      <div class="parent">
+        <div class="flexx">
+          <div>
+            <span><%= anotification.body%></span>
+          </div>
+          <div>
+            <%= link_to "x", mark_read_anotification_path(anotification), class: 'block font-30' %>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  <%end%>
+</div>
+<% if notifiction_flag %>
+  <h1>No notifications to show...</h1>
+<%end%>
+
+<style>
+  .block {
+    display: block;
+  }
+
+  .font-30 {
+    font-size: 30px;
+  }
+
+  .flexx {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .parent {
+    border: solid 1px #e4e4e4;
+    border-radius: 5px;
+    padding: 10px;
+    background: #4c4c4c;
+    margin-top: 10px;
+  }
+
+</style>

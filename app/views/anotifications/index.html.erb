@@ -1,0 +1,5 @@
+<%if current_user.superadmin? %>
+  <%= render partial: 'admin_anotifications', locals: {admin_notifications: @admin_notifications} %>
+<%else%>
+  <%= render partial: 'user_anotifications', locals: {admin_notifications: @admin_notifications} %>
+<%end%>

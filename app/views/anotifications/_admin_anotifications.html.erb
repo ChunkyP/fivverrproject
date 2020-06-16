@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Notifications</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%if admin_notifications.present? %>
+      <% admin_notifications.each do |admin_notification| %>
+        <%unless admin_notification.users.include?(current_user) %>
+          <tr>
+            <td><%= admin_notification.body %></td>
+            <td><%= link_to 'Show', anotification_path(admin_notification) %></td>
+            <td><%= link_to 'Read By', read_by_path(admin_notification.id) %></td>
+            <td><%= link_to 'Edit', edit_anotification_path(admin_notification) %></td>
+            <td><%= link_to 'Destroy', admin_notification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <%end%>
+      <% end %>
+    <%end%>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin Notification', new_anotification_path %>

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :anotifications do 
+    member do
+      get 'mark_read'
+    end
+  end
+  get 'read_by/:id/users', to: "anotifications#read_by", as: 'read_by'
   get 'nachrichtens/index'
   get 'conversations/index'
   devise_for :users, path_names: {registration: 'registration'}

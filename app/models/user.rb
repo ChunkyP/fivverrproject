@@ -2,11 +2,7 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
-#  avatar_content_type    :string
-#  avatar_file_name       :string
-#  avatar_file_size       :integer
-#  avatar_updated_at      :datetime
+#  id                     :integer          not null, primary key
 #  dob                    :date
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
@@ -42,6 +38,7 @@ class User < ApplicationRecord
   attr_writer :login
 
   has_and_belongs_to_many :channels
+  has_and_belongs_to_many :anotifications
   has_many :messages, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
