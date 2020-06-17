@@ -24,33 +24,13 @@
 
     <div class="navbar-nav align-items-lg-center ml-auto">
 
-      <%unless current_user.superadmin?%>
+      <% if  user_signed_in? %>
         <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
           <%= link_to anotifications_path, class: 'nav-link dropdown-toggle hide-arrow' do %>
-          <%# <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown"> %>
             <i class="ion ion-md-notifications-outline navbar-icon align-middle"></i>
             <span class="badge badge-primary badge-dot indicator <%= @show_badge == true ? '' : ' hidden' %>"></span>
             <span class="d-lg-none align-middle">&nbsp; Notifications</span>
           <%end%>
-          <%# <div class="dropdown-menu dropdown-menu-right"> %>
-            <%# @admin_notifications.first(4).each do |a_notification| %>
-              <%# unless a_notification.users.include?(current_user) %>
-                <%#= link_to anotification_path(a_notification), class: 'list-group-item list-group-item-action media d-flex align-items-center' do %>
-                  <%# <div class="ui-icon ui-icon-sm ion ion-md-person-add bg-info border-0 text-white"></div> %>
-                  <%# <div class="media-body line-height-condenced ml-3"> %>
-                    <%# <div class="text-body"><%= a_notification.body[0..10]%>
-                    <%# ...</div> %> 
-                    <%# %>
-                  <%# </div> %>
-                <%#end%>
-              <%#end%>
-            <%#end%>
-            <%# if @admin_notifications.present? %>
-              <%# <a href="javascript:void(0)" class="d-block text-center text-light small p-2 my-1">Show all notifications</a> %>
-            <%#else%>
-              <%# <a href="javascript:void(0)" class="d-block text-center text-light small p-2 my-1">No Notifications</a> %>
-            <%#end%>
-          <%# </div> %>
         </div>
       <%end%>
 

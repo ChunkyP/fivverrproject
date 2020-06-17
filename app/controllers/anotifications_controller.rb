@@ -11,7 +11,7 @@ class AnotificationsController < ApplicationController
   # GET /admin_notifications/1.json
   def show
     unless current_user.superadmin?
-      @is_already_notified =  AnotificationsUsers.where(anotification_id: params[:id].to_i, user_id: current_user.id)
+      @is_already_notified = AnotificationsUsers.where(anotification_id: params[:id].to_i, user_id: current_user.id)
       unless @is_already_notified.present?
         @notification = AnotificationsUsers.create(anotification_id: params[:id].to_i, user_id: current_user.id)
       end
@@ -34,7 +34,7 @@ class AnotificationsController < ApplicationController
 
   def mark_read
     unless current_user.superadmin?
-      @is_already_notified =  AnotificationsUsers.where(anotification_id: params[:id].to_i, user_id: current_user.id)
+      @is_already_notified = AnotificationsUsers.where(anotification_id: params[:id].to_i, user_id: current_user.id)
       unless @is_already_notified.present?
         @notification = AnotificationsUsers.create(anotification_id: params[:id].to_i, user_id: current_user.id)
       end
@@ -76,17 +76,18 @@ class AnotificationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_notification
-      @admin_notification = Anotification.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def admin_notification_params
-      params.require(:anotification).permit(:body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_notification
+    @admin_notification = Anotification.find(params[:id])
+  end
 
-    def render_notification(notification)
-      render(partial: 'broadcast_notification', locals: {notification: notification})
-    end
+  # Only allow a list of trusted parameters through.
+  def admin_notification_params
+    params.require(:anotification).permit(:body)
+  end
+
+  def render_notification(notification)
+    render(partial: 'broadcast_notification', locals: {notification: notification})
+  end
 end

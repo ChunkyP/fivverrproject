@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: admin_notifications
+# Table name: anotifications
 #
 #  id         :integer          not null, primary key
 #  body       :text
