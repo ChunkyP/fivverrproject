@@ -4,8 +4,6 @@
 <%= hidden_field_tag 'muted', @channels.where(muted: true).pluck(:id).join(",") %>
 
 
-<%= audio_tag("notification.mp3")%>
-
 <div class="chat-wrapper container-p-x container-p-y">
 
 <div class="card flex-grow-1 position-relative">

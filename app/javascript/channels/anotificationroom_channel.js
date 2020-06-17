@@ -10,6 +10,12 @@ consumer.subscriptions.create("AnotificationroomChannel", {
   },
 
   received(data) {
-    $(".navbar-nav").find(".badge").removeClass('hidden');
+    var current_user_id = $("#nav-user").val();
+    var sender_id = $(data.message).last().val();
+    if(current_user_id != sender_id) {
+      $(".navbar-nav").find(".badge").removeClass('hidden');
+      $('audio')[1].click();
+      $('audio')[1].play();
+    }
   }
 });

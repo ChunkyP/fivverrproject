@@ -1,3 +1,8 @@
+<% if current_user.present? %>
+  <input type="hidden" id="nav-user" value="<%= current_user.id %>" >
+<%end%>
+<%= audio_tag('notification.mp3')%>
+<%= audio_tag('admin_notification.mp3')%>
 <!-- Layout navbar -->
 <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-navbar-theme container-p-x" id="layout-navbar">
 
