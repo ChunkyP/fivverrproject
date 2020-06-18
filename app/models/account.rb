@@ -3,6 +3,10 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  avatar_content_type    :string
+#  avatar_file_name       :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #  dob                    :date
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
