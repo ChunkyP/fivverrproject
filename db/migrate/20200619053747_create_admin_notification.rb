@@ -1,4 +1,4 @@
-class CreateAdminNotifications < ActiveRecord::Migration[6.0]
+class CreateAdminNotification < ActiveRecord::Migration[6.0]
   def change
     create_table :anotifications do |t|
       t.text :body
