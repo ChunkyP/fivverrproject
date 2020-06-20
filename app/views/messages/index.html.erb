@@ -5,7 +5,17 @@
 
 
 <div class="chat-wrapper container-p-x container-p-y">
-
+  <%#= form_for :q, url: download_chat_path do |f| %>
+  <%if current_user.superadmin%>
+    <div class="row mb-2">
+      <div class="col-lg-6">
+        <input type="text" id="config-demo" class="form-control" name="channel[chat_date]">
+      </div>
+      <div class="col-lg-6">
+        <%= link_to "Download Chat", download_chat_path(format: 'csv',id: params[:channel_id]) ,class: 'btn btn-danger chat_download_btn'%>
+      </div>
+    </div>
+  <%end%>
 <div class="card flex-grow-1 position-relative">
 
   <div class="row no-gutters h-100">
@@ -66,7 +76,7 @@
       <div class="flex-grow-0 py-3 px-4">
         <%= form_for [@channel ,@message], :html => { :style => "width:inherit;display:flex", :role => "form", remote: true, id: 'message_form'}  do |f| %>
           <div class="input-group">
-            <%= f.text_field :message, {class: 'form-control', style: 'width:90%;display:inline-block'} %>
+            <%= f.text_field :message, {class: 'form-control message_emoji', style: 'width:90%;display:inline-block'} %>
             <% #  "", type: 'button', onclick: 'trigger_file()' %>
             <div class="input-group-append">
               <button class="btn btn-parimary">
@@ -113,7 +123,25 @@
   }
   $(function () {
 
-      $('input[type="text"]').emoji({
+      $('#config-demo').daterangepicker({
+        timePicker: true,
+        timePicker24Hour: true,
+        locale: {
+          format: 'YYYY-MM-DD H:mm:ss'
+        }
+      });
+
+      $('#config-demo').on('change', function(){
+        var [start_date,end_date] = $('#config-demo').val().split(" - ");
+        $(".chat_download_btn").attr("href",$(".chat_download_btn").attr("href")+"&start_date="+start_date+"&end_date="+end_date);
+      })
+
+      if($('#config-demo').val() != undefined ){
+        var [start_date,end_date] = $('#config-demo').val().split(" - ");
+        $(".chat_download_btn").attr("href",$(".chat_download_btn").attr("href")+"&start_date="+start_date+"&end_date="+end_date);
+      }
+
+      $('.message_emoji').emoji({
         'z-index': '999999'
       });
       $($('.input-group-append').prev()).css('z-index','5555555');
@@ -128,3 +156,10 @@
   })
 
 </script>
+
+
+<style>
+  .drp-calendar {
+    color: black !important;
+  }
+</style>

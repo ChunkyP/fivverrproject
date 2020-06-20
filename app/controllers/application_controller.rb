@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :get_admin_notifications
+  before_action :check_admin_unread_message
   # Default layout
   layout :layout_by_resource
 
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+
+  def check_admin_unread_message
+    @has_unread_mail = Nachrichten.joins(:conversation).where(read: false).where.not(user_id: current_user.id).count
   end
 
   private

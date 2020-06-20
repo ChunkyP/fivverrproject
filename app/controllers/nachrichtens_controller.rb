@@ -6,8 +6,10 @@ class NachrichtensController < ApplicationController
 
   def index
     @nachrichtens = @conversation.nachrichten
+    @nachrichtens.where.not(user_id: current_user.id).update_all(read: true)
 
     @nachrichten = @conversation.nachrichten.new
+    @action = "converstation_index"
   end
 
   def create
@@ -23,4 +25,5 @@ class NachrichtensController < ApplicationController
   def nachrichten_params
     params.require(:nachrichten).permit(:body, :user_id)
   end
+
 end

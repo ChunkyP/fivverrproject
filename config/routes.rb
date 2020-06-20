@@ -27,7 +27,8 @@ Rails.application.routes.draw do
       get 'add_new_user'
     end
   end
-
+  get 'download_chat', to: 'channels#download_chat' 
+  get 'download_mail_chat', to: 'conversations#download_mail_chat' 
   resources :conversations, only: [:index, :create] do
     resources :nachrichtens, only: [:index, :create]
   end

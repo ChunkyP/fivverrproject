@@ -50,6 +50,14 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def download_chat
+    @messages = Channel.find(params[:id]).messages.where("messages.created_at >= ? and messages.created_at <= ?",params[:start_date],params[:end_date])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @messages.to_csv, filename: "messages-#{Date.today}.csv" }
+    end
+  end
+
   # DELETE /channels/1
   # DELETE /channels/1.json
   def destroy

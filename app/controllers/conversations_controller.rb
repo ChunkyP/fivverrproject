@@ -15,6 +15,14 @@ class ConversationsController < ApplicationController
     redirect_to conversation_nachrichtens_path(@conversation)
   end
 
+  def download_mail_chat
+    @messages = Conversation.find(params[:id]).nachrichten.where("nachrichtens.created_at >= ? and nachrichtens.created_at <= ?",params[:start_date],params[:end_date])
+    respond_to do |format|
+      format.html
+      format.csv { send_data @messages.to_csv, filename: "messages-#{Date.today}.csv" }
+    end
+  end
+
   private
   def conversation_params
     params.permit(:sender_id, :receiver_id)

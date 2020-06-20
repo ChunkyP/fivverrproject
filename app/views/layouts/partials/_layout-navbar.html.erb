@@ -1,5 +1,6 @@
 <% if current_user.present? %>
   <input type="hidden" id="nav-user" value="<%= current_user.id %>" >
+  <input type="hidden" id="conversation_index" value="<%= @action %>" >
 <%end%>
 <%= audio_tag('notification.mp3')%>
 <%= audio_tag('admin_notification.mp3')%>
@@ -42,6 +43,7 @@
       <div class="demo-navbar-messages nav-item mr-lg-3">
         <%= link_to conversations_index_path, class: 'nav-link hide-arrow' do %>
           <i class="ion ion-ios-mail navbar-icon align-middle"></i>
+          <span class="badge badge-primary badge-dot indicator mail-badge <%= @has_unread_mail > 0 ? '' : ' hidden' %>"></span>
         <% end %>
       </div>
 
@@ -77,3 +79,12 @@
     display: none !important;
   }
 </style>
+
+<script>
+  $(function(){
+    action = $("#conversation_index").val();
+    if(action == "converstation_index"){
+      $(".mail-badge").addClass('hidden');
+    }
+  })
+</script>

@@ -29,4 +29,24 @@ class Message < ApplicationRecord
   has_one_attached :avatar
   # has_attached_file :avatar, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: '/images/:style/missing.png'
   # validates_attachment_content_type :avatar, content_type: %r{\Aimage/.*\z}
+
+  def self.to_csv
+    attributes = %w{id sender message Room created_at}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
+  end
+
+  def sender
+    user.username
+  end
+
+  def Room
+    channel.name
+  end
 end

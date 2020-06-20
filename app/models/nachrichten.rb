@@ -30,4 +30,29 @@ class Nachrichten < ApplicationRecord
   def nachrichten_time
     created_at.strftime("%d/%m/%y at %l:%M %p")
   end
+
+  def self.to_csv
+    attributes = %w{id sender message receiver created_at}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
+    end
+  end
+
+  def message
+    self.body
+  end
+
+  def sender
+    user.username
+  end
+
+  def receiver
+    conversation.sender_id == user_id ? conversation.receiver.username : conversation.sender.username
+  end
+
 end
