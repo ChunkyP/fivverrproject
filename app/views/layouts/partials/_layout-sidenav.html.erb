@@ -22,14 +22,6 @@
         <div>Chat</div>
       <% end %>
     </li>
-    <% if current_user.superadmin? %>
-      <li class="sidenav-item">
-        <%= link_to anotifications_path, class: "sidenav-link" do %>
-          <i class="ion ion-md-notifications-outline sidenav-icon"></i>
-          <div>Notofication</div>
-        <% end %>
-      </li>
-    <%end%>
 
     <% if false %>
     <!-- Chaträume -->
@@ -67,6 +59,13 @@
         <li class="sidenav-item<%= current_page?(users_path) ? ' active' : '' %>">
           <%= link_to users_path, class: "sidenav-link" do %>
             <div>User</div>
+          <% end %>
+        </li>
+
+        <li class="sidenav-item">
+          <%= link_to anotifications_path, class: "sidenav-link" do %>
+            <i class="ion ion-md-notifications-outline sidenav-icon"></i>
+            <div>Benachrichtigungen</div>
           <% end %>
         </li>
 

@@ -1,4 +1,4 @@
-class CreateNotificationsUsers < ActiveRecord::Migration[6.0]
+class CreateNotificationsUser < ActiveRecord::Migration[6.0]
   def change
     create_table :anotifications_users do |t|
       t.references :anotification, null: false, foreign_key: true
