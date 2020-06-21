@@ -16,7 +16,12 @@ class ConversationsController < ApplicationController
   end
 
   def download_mail_chat
-    @messages = Conversation.find(params[:id]).nachrichten.where("nachrichtens.created_at >= ? and nachrichtens.created_at <= ?",params[:start_date],params[:end_date])
+    @messages = Conversation.first.nachrichten.where("nachrichtens.created_at >= ? and nachrichtens.created_at <= ?",params[:start_date],params[:end_date])
+    @conversations = Conversation.where.not(id: Conversation.first.id)
+    @conversations.each do |conversation|
+      @m = conversation.nachrichten.where("nachrichtens.created_at >= ? and nachrichtens.created_at <= ?",params[:start_date],params[:end_date])
+      @messages = @messages.or(@m)
+    end
     respond_to do |format|
       format.html
       format.csv { send_data @messages.to_csv, filename: "messages-#{Date.today}.csv" }

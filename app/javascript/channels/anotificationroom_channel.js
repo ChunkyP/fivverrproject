@@ -10,6 +10,7 @@ consumer.subscriptions.create("AnotificationroomChannel", {
   },
 
   received(data) {
+    debugger
     var current_user_id = $("#nav-user").val();
     var sender_id = $(data.message).last().val();
     if(current_user_id != sender_id) {

@@ -32,7 +32,6 @@ function scroll_bottom() {
     scroll_bottom();
      submit_message();
      $("#message_form").bind("ajax:complete", function(event,xhr,status){
-       debugger
        $('#message_message').val('');
      });
 })*/

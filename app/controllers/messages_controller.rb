@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     @channels = current_user.channels
     channel_user = ChannelsUsers.where(user_id: current_user.id, channel_id: params[:channel_id])
     channel_user.update(read: true)
-    @notification_channel_ids = current_user.notification_channels.pluck(:id)
+    @notification_channel_ids = current_user.notification_channels.pluck(:channel_id)
   end
 
   # GET /messages/1

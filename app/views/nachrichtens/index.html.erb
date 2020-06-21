@@ -7,17 +7,6 @@
 =================================================================
 **************************** CONTENT ****************************
 -->
-
-<%if current_user.superadmin%>
-  <div class="row mb-2">
-    <div class="col-lg-6">
-      <input type="text" id="config-demo" class="form-control" name="channel[chat_date]">
-    </div>
-    <div class="col-lg-6">
-      <%= link_to "Download Chat", download_mail_chat_path(format: 'csv',id: params[:conversation_id]) ,class: 'btn btn-danger chat_download_btn'%>
-    </div>
-  </div>
-<%end%>
 <% @nachrichtens.each do |nachrichten| %>
 <div class="row w-100">
   <% if nachrichten.body %>
@@ -60,32 +49,3 @@
   </div>
 <% end %>
 </div>
-
-<script>
-    $(function () {
-
-      $('#config-demo').daterangepicker({
-        timePicker: true,
-        timePicker24Hour: true,
-        locale: {
-          format: 'YYYY-MM-DD H:mm:ss'
-        }
-      });
-
-      $('#config-demo').on('change', function(){
-        var [start_date,end_date] = $('#config-demo').val().split(" - ");
-        $(".chat_download_btn").attr("href",$(".chat_download_btn").attr("href")+"&start_date="+start_date+"&end_date="+end_date);
-      })
-
-      if($('#config-demo').val() != undefined ){
-        var [start_date,end_date] = $('#config-demo').val().split(" - ");
-        $(".chat_download_btn").attr("href",$(".chat_download_btn").attr("href")+"&start_date="+start_date+"&end_date="+end_date);
-      }
-    })
-</script>
-
-<style>
-  .drp-calendar {
-    color: black !important;
-  }
-</style>

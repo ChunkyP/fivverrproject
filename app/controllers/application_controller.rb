@@ -28,7 +28,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_admin_unread_message
-    @has_unread_mail = Nachrichten.joins(:conversation).where(read: false).where.not(user_id: current_user.id).count
+    @has_unread_mail = 0
+    if current_user.present?
+      @conversation_ids = current_user.conversations.pluck(:id)
+      @has_unread_mail = Nachrichten.where(read: false).where.not(user_id: current_user.id).where("conversation_id in (?) ", @conversation_ids).count
+    end
   end
 
   private

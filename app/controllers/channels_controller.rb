@@ -5,7 +5,7 @@ class ChannelsController < ApplicationController
   # GET /channels.json
   def index
     @channels = Channel.all
-    @notification_channel_ids = current_user.notification_channels.pluck(:id)
+    @notification_channel_ids = current_user.notification_channels.pluck(:channel_id)
   end
 
   # GET /channels/1

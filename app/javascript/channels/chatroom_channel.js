@@ -27,6 +27,7 @@ consumer.subscriptions.create("ChatroomChannel", {
         success: function(){
           if($("#user_idd").val() != $(data.message).first().val() ){
             var badge = $(channel_item).find('.my-badge');
+            $(badge).removeClass('hidden');
             $(badge).css('display','block');
             var muted = $("#muted").val();
             var muted_channel_ids = muted.split(",");

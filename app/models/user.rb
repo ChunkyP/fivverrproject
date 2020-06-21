@@ -57,6 +57,10 @@ class User < ApplicationRecord
     @login || self.username || self.email
   end
 
+  def conversations
+    Conversation.where("sender_id = ? or receiver_id = ?", id, id)
+  end
+
   def validate_username
     if User.where(email: username).exists?
       errors.add(:username, :invalid)
