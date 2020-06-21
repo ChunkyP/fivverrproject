@@ -28,7 +28,7 @@ class Nachrichten < ApplicationRecord
 
 
   def self.to_csv
-    attributes = %w{id sender message receiver created_at}
+    attributes = %w[id sender message receiver created_at]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
@@ -56,6 +56,6 @@ class Nachrichten < ApplicationRecord
 
   private
   def nachrichten_time
-    created_at.strftime("%d/%m/%y at %l:%M %p")
+    created_at.strftime('%d/%m/%y at %l:%M %p')
   end
 end
