@@ -26,10 +26,6 @@ class Nachrichten < ApplicationRecord
 
   validates_presence_of :body, :conversation_id, :user_id
 
-  private
-  def nachrichten_time
-    created_at.strftime("%d/%m/%y at %l:%M %p")
-  end
 
   def self.to_csv
     attributes = %w{id sender message receiver created_at}
@@ -44,7 +40,7 @@ class Nachrichten < ApplicationRecord
   end
 
   def message
-    self.body
+    body
   end
 
   def sender
@@ -52,7 +48,14 @@ class Nachrichten < ApplicationRecord
   end
 
   def receiver
-    conversation.sender_id == user_id ? conversation.receiver.username : conversation.sender.username
+    c_id = conversation_id
+    conv = Conversation.find(c_id)
+    conv.sender_id == user_id ? conv.receiver.username : conv.sender.username
   end
 
+
+  private
+  def nachrichten_time
+    created_at.strftime("%d/%m/%y at %l:%M %p")
+  end
 end
