@@ -24,10 +24,12 @@
 
     <!-- Labels -->
     <h6 class="text-sm font-weight-bold">Benutzer</h6>
-    <% @users_admin.each do |user| %>
+    <% @users.each do |user| %>
+      <% if user.is_admin %>
       <li class="d-block text-muted py-1">
         <%= link_to user.username, conversations_path(sender_id: current_user.id, receiver_id: user.id), method: :post, class: '' %>
       </li>
+      <% end %>
     <% end %>
   </div>
   <!-- / Messages sidebox -->
