@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -11,7 +13,7 @@ module RailsStarter
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    config.assets.precompile << "audios/*"
+    config.assets.precompile << 'audios/*'
 
     # Set European Timezone
     config.time_zone = 'Europe/Berlin'
