@@ -34,6 +34,8 @@ class Account < ApplicationRecord
   attr_accessor :password, :password_confirmation
   attr_accessor :skip_password_validation
 
+  default_scope { order(username: :asc) }
+
   def password_required?
     return false if skip_password_validation
     super

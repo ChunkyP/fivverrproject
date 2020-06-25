@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  default_scope { order(username: :desc) }
+  default_scope { order(username: :asc) }
 
   def notification_channels
     ChannelsUsers.where(read: false, user_id: id, channel_id: channels)
