@@ -10,7 +10,10 @@ class ChannelsController < ApplicationController
 
   # GET /channels/1
   # GET /channels/1.json
-  def show; end
+  def show
+    id = params[:id]
+    @users = Channel.find(id).users
+  end
 
   # GET /channels/new
   def new

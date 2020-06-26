@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     @has_unread_mail = 0
     if current_user.present?
       @conversation_ids = current_user.conversations.pluck(:id)
-      @has_unread_mail = Nachrichten.where(read: false).where.not(user_id: current_user.id).where("conversation_id in (?) ", @conversation_ids).count
+      @has_unread_mail = Nachrichten.where(read: false).where.not(user_id: current_user.id).where("conversation_id in (?) ", @conversation_ids).map(&:conversation).pluck(:id)
     end
   end
 

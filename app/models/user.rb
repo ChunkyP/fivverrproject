@@ -40,6 +40,10 @@ class User < ApplicationRecord
   has_and_belongs_to_many :channels
   has_and_belongs_to_many :anotifications
   has_many :messages, dependent: :destroy
+  has_many :nachrichtens, dependent: :destroy
+  # has_many :conversations, dependent: :nullify
+
+  before_destroy :make_conversations_nullify
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
@@ -51,6 +55,11 @@ class User < ApplicationRecord
 
   def notification_channels
     ChannelsUsers.where(read: false, user_id: id, channel_id: channels)
+  end
+
+  def make_conversations_nullify
+    Conversation.where(sender_id: id).update_all(sender_id: nil)
+    Conversation.where(receiver_id: id).update_all(receiver_id: nil)
   end
 
   def login

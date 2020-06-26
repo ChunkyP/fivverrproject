@@ -47,15 +47,20 @@
 
       <ul class="list-group messages-list">
         <% @conversations.each do |conversation| %>
-        <li class="list-group-item px-4">
-          <div class="message-sender text-body d-block col-4">
-            <%= conversation.recipient(current_user).username %>
-          </div>
-          <div>
-            <%= link_to 'Nachricht öffnen', conversation_nachrichtens_path(conversation), class: 'message-subject text-body d-block' %>
-          </div>
-        </li>
-        <% end %>
+          <% if conversation.recipient(current_user).present? %>
+            <li class="list-group-item px-4">
+              <div class="message-sender text-body d-block col-4">
+                <%= conversation.recipient(current_user).username%>
+              </div>
+              <div style="display:flex;align-items:center">
+                <%= link_to 'Nachricht öffnen', conversation_nachrichtens_path(conversation), class: 'message-subject text-body d-block' %>
+                <%if @has_unread_mail.include?(conversation.id) %>
+                  <div class="mail-dot"></div>
+                <%end%>
+              </div>
+            </li>
+            <% end %>
+          <%end%>
       </ul>
 
     </div>
@@ -93,4 +98,12 @@
   .drp-calendar {
     color: black !important;
   }
+
+.mail-dot {
+        width: 10px;
+    height: 10px;
+    background-color: yellow;
+    margin-left: 20px;
+    border-radius: 50%;
+}
 </style>
