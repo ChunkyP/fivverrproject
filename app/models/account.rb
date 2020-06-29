@@ -33,6 +33,7 @@ class Account < ApplicationRecord
   self.table_name = 'users'
   attr_accessor :password, :password_confirmation
   attr_accessor :skip_password_validation
+  has_many :messages, dependent: :destroy, foreign_key: 'user_id'
 
   default_scope { order(username: :asc) }
 
