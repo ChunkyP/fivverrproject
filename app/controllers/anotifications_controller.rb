@@ -56,7 +56,7 @@ class AnotificationsController < ApplicationController
   def update
     respond_to do |format|
       if @admin_notification.update(admin_notification_params)
-        format.html { redirect_to @admin_notification, notice: 'Admin notification was successfully updated.' }
+        format.html { redirect_to @admin_notification, notice: 'Benachrichtigung wurde erfolgreich geändert.' }
         format.json { render :show, status: :ok, location: @admin_notification }
       else
         format.html { render :edit }
@@ -70,7 +70,7 @@ class AnotificationsController < ApplicationController
   def destroy
     @admin_notification.destroy
     respond_to do |format|
-      format.html { redirect_to anotifications_url, notice: 'Admin notification was successfully destroyed.' }
+      format.html { redirect_to anotifications_url, notice: 'Benachrichtigung wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end
