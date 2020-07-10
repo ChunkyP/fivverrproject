@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  betreiber              :boolean          default(FALSE), not null
 #  dob                    :date
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
@@ -87,5 +88,10 @@ class User < ApplicationRecord
 
   def self.create_new_user(params)
     @user = User.create!(params)
+  end
+
+  def self.online
+    ids = ActionCable.server.pubsub.redis_connection_for_subscriptions.smembers "online"
+    where(id: ids)
   end
 end

@@ -70,6 +70,6 @@ class AccountsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def account_params
     params.fetch(:account).permit(:username, :email, :password, :confirm_password, :skype, :firstname, :lastname,
-                                  :notice, :dob, :twitter, :instagram, :facebook, :phone, :mobile, :is_admin,)
+                                  :notice, :dob, :twitter, :instagram, :facebook, :phone, :mobile, :is_admin, :betreiber)
   end
 end
