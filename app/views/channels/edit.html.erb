@@ -1,6 +1,8 @@
+<% if  current_user.superadmin %>
 <h1>Channel bearbeiten</h1>
 
 <%= render 'form', channel: @channel %>
 
 <%= link_to 'Show', @channel %> |
 <%= link_to 'Back', channels_path %>
+<% end %>

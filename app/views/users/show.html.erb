@@ -1,62 +1,64 @@
-<% if flash[:notice].present? %>
-  <div class="row">
-    <div class="col-6 offset-3">
-      <div class="div alert alert-success">
+<% if current_user.is_admin %>
+  <% if flash[:notice].present? %>
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="div alert alert-success">
         <span>
           <%= flash[:notice] %>
         </span>
+        </div>
       </div>
     </div>
-  </div>
-<% elsif flash[:alert].present? %>
-  <div class="row">
-    <div class="col-6 offset-3">
-      <div class="div alert alert-danger">
+  <% elsif flash[:alert].present? %>
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="div alert alert-danger">
         <span>
           <%= flash[:alert] %>
         </span>
+        </div>
       </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+          <th>Name</th>
+          <td>
+            <%= @user.username %>
+          </td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>
+            <%= @user.email %>
+          </td>
+        </tr>
+        <tr>
+          <th>Chats</th>
+          <td>
+            <%= @channels.present? ? @channels.map(&:name).join(", ") : "Aktuell keinem Chaat zugewiesen. " %>
+          </td>
+        </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-3 offset-1 border">
+      <br/>
+      <br/>
+      <br/>
+      <h3 class="text-center">User hinzufügen</h3>
+      <%= form_for(:user, url: add_to_channel_path) do |f| %>
+        <div class="form-group">
+          <%= f.select :channel_ids, options_for_select(Channel.all.map { |c| [c.name, c.id] }), {include_blank: 'Chat auswählen'}, {class: 'form-control'} %>
+          <%= f.hidden_field :user_id, value: @user.id %>
+        </div>
+        <div class="form-group float-right">
+          <%= f.submit "Zu Chat hinzufügen", class: 'btn btn-dark' %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
-<div class="row">
-  <div class="col-6">
-    <table class="table table-bordered table-hover">
-      <thead class="thead-dark">
-      <tr>
-        <th>Name</th>
-        <td>
-          <%= @user.username %>
-        </td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td>
-          <%= @user.email %>
-        </td>
-      </tr>
-      <tr>
-        <th>Chats</th>
-        <td>
-          <%= @channels.present? ? @channels.map(&:name).join(", ") : "Aktuell keinem Chaat zugewiesen. "  %>
-        </td>
-      </tr>
-      </thead>
-    </table>
-  </div>
-  <div class="col-3 offset-1 border">
-    <br/>
-    <br/>
-    <br/>
-    <h3 class="text-center">User hinzufügen</h3>
-    <%= form_for(:user, url: add_to_channel_path) do |f| %>
-      <div class="form-group">
-        <%= f.select :channel_ids, options_for_select(Channel.all.map{|c| [c.name,c.id]}),{include_blank: 'Chat auswählen'}, {class: 'form-control'} %>
-        <%= f.hidden_field :user_id, value: @user.id %>
-      </div>
-      <div class="form-group float-right">
-        <%= f.submit "Zu Chat hinzufügen", class: 'btn btn-dark' %>
-      </div>
-    <% end %>
-  </div>
-</div>

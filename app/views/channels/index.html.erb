@@ -1,3 +1,4 @@
+<% if current_user.superadmin %>
 <div class="card">
   <h6 class="card-header">
     Chaträume <%= link_to 'Neuen Channel erstellen', new_channel_path, class: 'btn btn-sm btn-success' %>
@@ -29,3 +30,4 @@
     </table>
   </div>
 </div>
+<% end %>

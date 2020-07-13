@@ -1,57 +1,60 @@
-<div class="card">
-  <h6 class="card-header">
-    Benutzerkonten <%= link_to 'Neuer User', new_user_path, class: 'btn btn-sm btn-success' %>
-  </h6>
-  <div class="card-datatable table-responsive">
-    <table class="datatables-demo table table-striped table-bordered">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Vorname</th>
-        <th>Nachname</th>
-        <th>Skype</th>
-        <th>Admin</th>
-        <th class="text-right">Aktionen</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @users.each do |user| %>
+<% if current_user.is_admin %>
+  <div class="card">
+    <h6 class="card-header">
+      Benutzerkonten <%= link_to 'Neuer User', new_user_path, class: 'btn btn-sm btn-success' %>
+    </h6>
+    <div class="card-datatable table-responsive">
+      <table class="datatables-demo table table-striped table-bordered">
+        <thead>
         <tr>
-          <td><%= user.id %></td>
-          <td><%= user.username %></td>
-          <td><%= user.email %></td>
-          <td><%= user.firstname %></td>
-          <td><%= user.lastname %></td>
-          <td><%= user.skype %></td>
-          <% if user.is_admin == true %>
-            <td class="text-center"><i class="ion ion-ios-checkmark-circle text-success"></i></td>
-          <% else %>
-            <td class="text-center"><i class="ion ion-ios-close-circle text-danger"></i></td>
-          <% end %>
-          <td class="text-right">
-            <%= link_to 'Öffnen', user_path(user), class: 'btn btn-sm btn-info' %>
-          </td>
-          <td style="display: none;">
-            <%= text_field_tag "channel",'', class: 'channel_field' %>
-            <%= button_tag "X", onclick: 'hide_channel_field(this)' %>
-          </td>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Skype</th>
+          <th>Admin</th>
+          <th class="text-right">Aktionen</th>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.firstname %></td>
+            <td><%= user.lastname %></td>
+            <td><%= user.skype %></td>
+            <% if user.is_admin == true %>
+              <td class="text-center"><i class="ion ion-ios-checkmark-circle text-success"></i></td>
+            <% else %>
+              <td class="text-center"><i class="ion ion-ios-close-circle text-danger"></i></td>
+            <% end %>
+            <td class="text-right">
+              <%= link_to 'Öffnen', user_path(user), class: 'btn btn-sm btn-info' %>
+            </td>
+            <td style="display: none;">
+              <%= text_field_tag "channel", '', class: 'channel_field' %>
+              <%= button_tag "X", onclick: 'hide_channel_field(this)' %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+<% end %>
 
 <script>
 
-    function display_channel_field(this_element){
+    function display_channel_field(this_element) {
         channel_field = $(this_element).parent().prev();
         $(this_element).parent().addClass('hidden');
         $(channel_field).removeClass('hidden');
     }
-    function hide_channel_field(this_element){
+
+    function hide_channel_field(this_element) {
         td = $(this_element).parent();
         $(td).addClass('hidden');
         $(td).next().removeClass('hidden');
