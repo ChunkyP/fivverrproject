@@ -32,7 +32,7 @@
             <td class="text-center"><i class="ion ion-ios-close-circle text-danger"></i></td>
           <% end %>
           <td class="text-right">
-            <%= link_to 'Öffnen', user_path(user), class: 'btn btn-sm btn-info' %>
+            <%= link_to 'Öffnen', account_path(account), class: 'btn btn-sm btn-info' %>
             <%= link_to 'Bearbeiten', edit_account_path(account), class: 'btn btn-sm btn-warning' %>
             <%= link_to 'Löschen', account_path(account), method: :delete, data: { confirm: 'Bist du dir sicher?' }, class: 'btn btn-sm btn-danger' %>
           </td>
