@@ -9,6 +9,10 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+    channels_ids = current_user.channels.pluck(:id)
+    unless channels_ids.include? params[:channel_id].to_i
+      redirect_to root_path, notice: 'You do not have access to this.'
+    end
     @messages = @channel.messages.order('created_at asc')
     @message = Message.new
     @channels = current_user.channels
