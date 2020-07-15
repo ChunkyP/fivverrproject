@@ -26,6 +26,7 @@ class Nachrichten < ApplicationRecord
 
   validates_presence_of :body, :conversation_id, :user_id
 
+  default_scope { order(created_at: :desc) }
 
   def self.to_csv
     attributes = %w[id sender message receiver created_at]
