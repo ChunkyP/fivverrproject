@@ -16,21 +16,11 @@
       <% end %>
     </li>
 
-    <!-- Chaträume -->
     <li class="sidenav-item">
-      <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-ios-chatboxes"></i>
+      <%= link_to channel_messages_path(19), class: "sidenav-link" do %>
+        <i class="sidenav-icon ion ion-ios-chatboxes"></i>
         <div>Chaträume</div>
-      </a>
-
-      <ul class="sidenav-menu">
-        <% if @channels.present? %>
-          <% @channels.each do |channel| %>
-            <li>
-              <%= link_to channel.name, channel_messages_path(channel), class: "sidenav-link" %>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
+      <% end %>
     </li>
 
     <% if current_user.is_admin %>
