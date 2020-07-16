@@ -11,6 +11,7 @@
 #  firstname              :string
 #  instagram              :string
 #  is_admin               :boolean          default(FALSE), not null
+#  last_seen_at           :datetime
 #  lastname               :string
 #  mobile                 :string
 #  notice                 :text

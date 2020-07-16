@@ -10,8 +10,7 @@
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Vorname</th>
-          <th>Nachname</th>
+          <th>Zuletzt online</th>
           <th>Skype</th>
           <th>Admin</th>
           <th class="text-right">Aktionen</th>
@@ -21,10 +20,13 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-            <td><%= user.username %></td>
+              <% if user.last_seen_at.nil? || user.last_seen_at < 5.minutes.ago %>
+              <td><%= user.username %></td>
+            <% else %>
+              <td><%= user.username %><span class="badge badge-success align-text-bottom ml-1">Online</span></td>
+            <% end %>
             <td><%= user.email %></td>
-            <td><%= user.firstname %></td>
-            <td><%= user.lastname %></td>
+            <td><%= user.last_seen_at.nil? ? 'Noch nie angemeldet' : time_ago_in_words(user.last_seen_at) %></td>
             <td><%= user.skype %></td>
             <% if user.is_admin == true %>
               <td class="text-center"><i class="ion ion-ios-checkmark-circle text-success"></i></td>

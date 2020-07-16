@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :get_admin_notifications
   before_action :check_admin_unread_message
+  before_action :update_last_seen_at, if: -> { user_signed_in? && (current_user.last_seen_at.nil? || current_user.last_seen_at < 5.minutes.ago)}
   # Default layout
   layout :layout_by_resource
 
@@ -33,6 +34,10 @@ class ApplicationController < ActionController::Base
       @conversation_ids = current_user.conversations.pluck(:id)
       @has_unread_mail = Nachrichten.where(read: false).where.not(user_id: current_user.id).where("conversation_id in (?) ", @conversation_ids).map(&:conversation).pluck(:id)
     end
+  end
+
+  def update_last_seen_at
+    current_user.update_attribute(:last_seen_at, Time.current)
   end
 
   private
