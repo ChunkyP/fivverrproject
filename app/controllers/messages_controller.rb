@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   def index
     channels_ids = current_user.channels.pluck(:id)
     unless channels_ids.include? params[:channel_id].to_i
-      redirect_to root_path, notice: 'You do not have access to this.'
+      redirect_to root_path, alert: 'Zugriff verweigert.'
     end
     @messages = @channel.messages.order('created_at asc')
     @message = Message.new

@@ -16,48 +16,60 @@
       <% end %>
     </li>
 
-    <li class="sidenav-item">
-      <%= link_to channel_messages_path(19), class: "sidenav-link" do %>
-        <i class="sidenav-icon ion ion-ios-chatboxes"></i>
-        <div>Chaträume</div>
-      <% end %>
-    </li>
-
-    <% if current_user.is_admin %>
-    <!-- Adminarea -->
     <li class=" sidenav-item">
-      <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-ios-options"></i>
-        <div>Verwaltung</div>
+      <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-ios-chatboxes"></i>
+        <div>Chaträume</div>
       </a>
 
       <ul class="sidenav-menu">
-        <li class="sidenav-item<%= current_page?(channels_path) ? ' active' : '' %>">
-          <%= link_to channels_path, class: "sidenav-link" do %>
-            <div>Chaträume</div>
+        <% Channel.all.each do |channel| %>
+          <% if current_user.channels.include?(channel) %>
+            <li class="sidenav-item<%= current_page?(channels_path) ? ' active' : '' %>">
+              <%= link_to channel_messages_path(channel), class: "sidenav-link" do %>
+                <div><%= channel.name %></div>
+              <% end %>
           <% end %>
-        </li>
-
-        <li class="sidenav-item<%= current_page?(users_path) ? ' active' : '' %>">
-          <%= link_to users_path, class: "sidenav-link" do %>
-            <div>User</div>
-          <% end %>
-        </li>
-
-        <li class="sidenav-item">
-          <%= link_to anotifications_path, class: "sidenav-link" do %>
-            <div>Benachrichtigungen</div>
-          <% end %>
-        </li>
-
-        <% if current_user.superadmin %>
-        <li class="sidenav-item<%= current_page?(accounts_path) ? ' active' : '' %>">
-          <%= link_to accounts_path, class: "sidenav-link" do %>
-            <div>Superadmin</div>
-          <% end %>
-        </li>
         <% end %>
+        </li>
+
       </ul>
     </li>
+
+    <% if current_user.is_admin %>
+      <!-- Adminarea -->
+      <li class=" sidenav-item">
+        <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-ios-options"></i>
+          <div>Verwaltung</div>
+        </a>
+
+        <ul class="sidenav-menu">
+          <li class="sidenav-item<%= current_page?(channels_path) ? ' active' : '' %>">
+            <%= link_to channels_path, class: "sidenav-link" do %>
+              <div>Chaträume</div>
+            <% end %>
+          </li>
+
+          <li class="sidenav-item<%= current_page?(users_path) ? ' active' : '' %>">
+            <%= link_to users_path, class: "sidenav-link" do %>
+              <div>User</div>
+            <% end %>
+          </li>
+
+          <li class="sidenav-item">
+            <%= link_to anotifications_path, class: "sidenav-link" do %>
+              <div>Benachrichtigungen</div>
+            <% end %>
+          </li>
+
+          <% if current_user.superadmin %>
+            <li class="sidenav-item<%= current_page?(accounts_path) ? ' active' : '' %>">
+              <%= link_to accounts_path, class: "sidenav-link" do %>
+                <div>Superadmin</div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
 
   </ul>
