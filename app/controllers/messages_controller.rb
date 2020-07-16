@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
     unless channels_ids.include? params[:channel_id].to_i
       redirect_to root_path, alert: 'Zugriff verweigert.'
     end
-    @messages = @channel.messages.order('created_at asc').limit(50).reverse
+    @messages = @channel.messages.last(50).order('created_at asc')
     @message = Message.new
     @channels = current_user.channels
     channel_user = ChannelsUsers.where(user_id: current_user.id, channel_id: params[:channel_id])
