@@ -20,7 +20,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-              <% if user.last_seen_at.nil? || user.last_seen_at < 5.minutes.ago %>
+              <% if user.last_seen_at.nil? || user.last_seen_at < 1.hour.ago %>
               <td><%= user.username %></td>
             <% else %>
               <td><%= user.username %><span class="badge badge-success align-text-bottom ml-1">Online</span></td>
