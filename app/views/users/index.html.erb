@@ -35,6 +35,9 @@
             <% end %>
             <td class="text-right">
               <%= link_to 'Öffnen', user_path(user), class: 'btn btn-sm btn-info' %>
+              <% if current_user.superadmin == true %>
+                <%= link_to 'Löschen', user_path(user), method: :delete, data: { confirm: 'Bist du dir sicher?' }, class: 'btn btn-sm btn-danger' %>
+              <% end %>
             </td>
             <td style="display: none;">
               <%= text_field_tag "channel", '', class: 'channel_field' %>

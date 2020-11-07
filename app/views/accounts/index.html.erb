@@ -34,7 +34,6 @@
           <td class="text-right">
             <%= link_to 'Öffnen', account_path(account), class: 'btn btn-sm btn-info' %>
             <%= link_to 'Bearbeiten', edit_account_path(account), class: 'btn btn-sm btn-warning' %>
-            <%= link_to 'Löschen', account_path(account), method: :delete, data: { confirm: 'Bist du dir sicher?' }, class: 'btn btn-sm btn-danger' %>
           </td>
           <td style="display: none;">
             <%= text_field_tag "channel",'', class: 'channel_field' %>
