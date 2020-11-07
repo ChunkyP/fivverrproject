@@ -30,7 +30,7 @@ class ChannelsController < ApplicationController
 
     respond_to do |format|
       if @channel.save
-        format.html { redirect_to @channel, notice: 'Channel was successfully created.' }
+        format.html { redirect_to @channel, notice: 'Chatraum wurde erfolgreich erstellt.' }
         format.json { render :show, status: :created, location: @channel }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ChannelsController < ApplicationController
   def update
     respond_to do |format|
       if @channel.update(channel_params)
-        format.html { redirect_to @channel, notice: 'Channel was successfully updated.' }
+        format.html { redirect_to @channel, notice: 'Chatraum wurde erfolgreich geupdated.' }
         format.json { render :show, status: :ok, location: @channel }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class ChannelsController < ApplicationController
   def destroy
     @channel.destroy
     respond_to do |format|
-      format.html { redirect_to channels_url, notice: 'Channel was successfully destroyed.' }
+      format.html { redirect_to channels_url, notice: 'Chatraum wurde erfolgreich gelöscht.' }
       format.json { head :no_content }
     end
   end
@@ -78,7 +78,7 @@ class ChannelsController < ApplicationController
   def remove_user
     @user_channel = ChannelsUsers.where(channel_id: params[:channel_id], user_id: params[:id])
     @user_channel.destroy_all
-    redirect_to :back, notice: "User removed Successfully"
+    redirect_to request.referrer, notice: "User wurde erfolgreich entfernt."
   end
 
   private
