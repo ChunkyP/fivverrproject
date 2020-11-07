@@ -78,7 +78,7 @@ class ChannelsController < ApplicationController
   def remove_user
     @user_channel = ChannelsUsers.where(channel_id: params[:channel_id], user_id: params[:id])
     @user_channel.destroy_all
-    notice: "User removed Successfully"
+    redirect_to :back, notice: "User removed Successfully"
   end
 
   private
